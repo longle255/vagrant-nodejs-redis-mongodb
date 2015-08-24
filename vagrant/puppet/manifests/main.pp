@@ -55,13 +55,13 @@ class nodejs {
 
 class mongodb {
   class {'::mongodb::globals':
-    manage_package_repo => true,
-    bind_ip             => ["127.0.0.1"],
+    manage_package_repo => true
   }->
   class {'::mongodb::server':
     port    => 27017,
     verbose => true,
-    ensure  => "present"
+    ensure  => "present",
+    bind_ip => ["0.0.0.0"]
   }->
   class {'::mongodb::client': }
 }
